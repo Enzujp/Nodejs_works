@@ -1,7 +1,6 @@
-const greet  = (name) => {
-    console.log(`hello, ${name}`);
+const greet = (name) => {
+    console.log(`hello there, ${name}`);
 }
 
+greet('Enzu')
 
-greet('enzu')
-greet('jp')
