@@ -20,6 +20,12 @@ const server = http.createServer((req, res) => {
             path += 'about.html';
             res.statusCode = 200;
             break;
+        case '/about-me':
+            res.statusCode = 301;
+            res.setHeader('Location', '/about');
+            res.end()
+            break;
+            // this is how you redirect to a new path permanently
         default:
             path += '404.html';
             res.statusCode = 404;
