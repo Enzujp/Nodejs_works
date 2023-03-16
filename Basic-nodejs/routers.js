@@ -1,4 +1,6 @@
 const http = require('http');
+
+const fs = require('fs');
 // the createServer function takes in a callback argument
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method);
@@ -6,12 +8,21 @@ const server = http.createServer((req, res) => {
     // set header content type
     res.setHeader('content-Type', 'text/html');
 
-    res.write('<head><link rel="stylesheet" href="#"></head>')
-    res.write('<p>hello, enzu<p>');
-    res.write('<p>hello, baby boy<p>');
-    res.end();
+    // send an html file
+    fs.readFile('./views/index.html', (err, data) => {
+        if (err) {
+            console.log(err);
+            res.end;
+        } else {
+            // res.write(data);
+            // if we're sending one thing to the server we could make use 
+            // of the res.end() and parse in the data like res.end(data)
+            res.end(data);
+            // however for multiple data entries we might need to be more specific
+        }
+        
 
-
+    })
     // ideally html pages would be included in a different sheet and then imported in here.
 });
 
