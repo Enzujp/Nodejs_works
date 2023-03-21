@@ -14,7 +14,10 @@ app.listen(3000);
 // req contains information about url, and method -- get or post 
 // express automatically infers content type so there's no need to specify a header type
 app.get('/', (req, res) => {
-    res.sendFile('./views/index.html', {root: __dirname});
+    res.render('index');
+    
+    
+    //res.sendFile('./views/index.html', {root: __dirname});
     //res.send('<p>Homepage</p>');
 });
 
