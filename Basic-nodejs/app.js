@@ -3,7 +3,7 @@ const express = require('express');
 // set up express app
 const app = express();
 
-// register view engine
+// register view engine 
 
 app.set('view engine', 'ejs'); // express and ejs automatically look in the views folder for the ejs files
 //app.set('views', 'personalized-views'); if you're not using default views folder for ejs
@@ -14,9 +14,16 @@ app.listen(3000);
 // req contains information about url, and method -- get or post 
 // express automatically infers content type so there's no need to specify a header type
 app.get('/', (req, res) => {
+    const blogs = [
+        {title: 'Enzu finds eggs', snippet: 'The Lord is my sherpherd'},
+        {title: 'Enzu finds stars', snippet: 'The Lord is my sherpherd'},
+        {title: 'Enzu gets a tech job', snippet: 'The Lord is my sherpherd'}
+    ];
+
     res.render('index', {
-        title: 'Home'
-    });
+        title: 'Home', 
+                blogs
+    })
     
     
     //res.sendFile('./views/index.html', {root: __dirname});
