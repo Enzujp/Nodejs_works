@@ -14,7 +14,9 @@ app.listen(3000);
 // req contains information about url, and method -- get or post 
 // express automatically infers content type so there's no need to specify a header type
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {
+        title: 'Home'
+    });
     
     
     //res.sendFile('./views/index.html', {root: __dirname});
@@ -22,17 +24,22 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.render('about')
+    res.render('about', {
+            title: 'about'
+        })
+    })
 
 
     //res.sendFile('./views/about.html', {root: __dirname});
     //res.send('<p>About page</p>');
-});
+// });
 
 
 //redirects
 app.get('/blogs/create', (req, res) => {
-    res.render('create')
+    res.render('create', {
+        title: 'create a blog'
+    })
 })
 
 
