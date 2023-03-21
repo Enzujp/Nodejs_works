@@ -22,23 +22,31 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
+    res.render('about')
 
-    res.sendFile('./views/about.html', {root: __dirname});
+
+    //res.sendFile('./views/about.html', {root: __dirname});
     //res.send('<p>About page</p>');
 });
 
 
 //redirects
 app.get('/about-us', (req, res) => {
-
-    res.redirect('/about');
+    
+    
+    
+    //res.redirect('/about');
     //res.send('<p>About page</p>');
 });
 
 
 // 404 page
 app.use((req, res) => {
-    res.status(404).sendFile('./views/404.html', {root: __dirname});
+    res.status(404).render('404');
+    
+    
+    
+    //res.status(404).sendFile('./views/404.html', {root: __dirname});
     // adding the .status to let express know it's a 404 error
 })
 
