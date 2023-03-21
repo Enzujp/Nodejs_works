@@ -1,10 +1,22 @@
 const http = require('http');
 
 const fs = require('fs');
+
+const _ = require('lodash');
 const { before } = require('node:test');
 // the createServer function takes in a callback argument
 const server = http.createServer((req, res) => {
-    console.log(req.url, req.method);
+    // lodash
+
+    const num = _.random(0, 9);
+    console.log(num);
+
+    const greet = _.once(() => {
+        console.log('hello');
+    });
+
+
+    greet();
 
     // set header content type
     res.setHeader('content-Type', 'text/html');
