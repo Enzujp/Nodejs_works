@@ -7,7 +7,7 @@ const { before } = require('node:test');
 // the createServer function takes in a callback argument
 const server = http.createServer((req, res) => {
     // lodash
-
+    
     const num = _.random(0, 9);
     console.log(num);
 
