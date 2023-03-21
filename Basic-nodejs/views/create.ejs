@@ -6,11 +6,8 @@
     </head>
 
     <body>
-
-        <% const name = 'enzu' %>
         <nav>
             <div class="site-tile">
-                <p><%= name %></p>
                 <a href="/"><h1>Enzu's Blog</h1></a>
                 <p>Enzu's first node site</p>
             </div>
@@ -22,8 +19,16 @@
             </ul>
         </nav>
 
-        <div class="blogs content">
-            <h2>All Blogs</h2>
+        <div class="create-blog content">
+            <form>
+                <label for="title">Blog Title</label>
+                <input type="text" id="title" required>
+                <label for="snippet">Blog snippet</label>
+                <input type="text" id="snippet" required>
+                <label for="body">Blog body: </label>
+                <textarea id="body" required></textarea>
+                <button>Submit</button>
+            </form>
         </div>
     </body>
 </html>
