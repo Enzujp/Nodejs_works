@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 
 // set up express app
 const app = express();
@@ -11,8 +12,14 @@ app.set('view engine', 'ejs'); // express and ejs automatically look in the view
 
 app.listen(3000);
 
+app.use(morgan('dev'));
+
 // req contains information about url, and method -- get or post 
 // express automatically infers content type so there's no need to specify a header type
+
+
+
+
 app.get('/', (req, res) => {
     const blogs = [
         {title: 'Enzu finds eggs', snippet: 'The Lord is my sherpherd'},
@@ -54,8 +61,6 @@ app.get('/blogs/create', (req, res) => {
 app.use((req, res) => {
     res.status(404).render('404');
     
-    
-    
     //res.status(404).sendFile('./views/404.html', {root: __dirname});
     // adding the .status to let express know it's a 404 error
 })
@@ -63,3 +68,15 @@ app.use((req, res) => {
 // The use function runs the code from top to bottom and if it doesn't find a matching url,
 // it makes use of the use function, which we have written to the 404. 
 // The use function has to be at the bottom of the page.
+
+
+
+
+// app.use((req, res, next) => {
+//     console.log('new request made: ');
+//     console.log('host:', req.hostname);
+//     console.log('path:', req.path);
+//     console.log('method: ', req.method);
+//     next();
+// }); // browser hangs after using middleware, and doesn't know how to move on to the next request so we must provide that 
+// // using a function called next()
