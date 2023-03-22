@@ -12,6 +12,9 @@ app.set('view engine', 'ejs'); // express and ejs automatically look in the view
 
 app.listen(3000);
 
+// middleware and static files
+
+app.use(express.static('public'));
 app.use(morgan('dev'));
 
 // req contains information about url, and method -- get or post 
