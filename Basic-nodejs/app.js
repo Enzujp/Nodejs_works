@@ -23,42 +23,7 @@ app.set('view engine', 'ejs'); // express and ejs automatically look in the view
 app.use(express.static('public'));
 app.use(morgan('dev'));
 
-// mongo and mongoose sandbox routes 
-app.get('/add-blog', (req, res) => {
-    const blog = new Blog({
-        title: 'new blog 2',
-        snippet: 'Give us this day',
-        body: 'Our daily bread'
-    });
 
-    blog.save()
-        .then((result) => {
-            res.send(result)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-})
-
-app.get ('/all-blogs', (req, res) => {
-    Blog.find() // method gets all blogs
-     .then((results) => {
-        res.send(results);
-     })
-     .catch((err) => {
-        console.log(err);
-     });
-});
-
-// app.get('/single-blog', (req, res) => {
-//     Blog.findById('')
-//      .then((results) => {
-//         res.send(results);
-//      })
-//      .catch((err) => {
-//         console.log(err);
-//      });
-// })
 
 // req contains information about url, and method -- get or post 
 // express automatically infers content type so there's no need to specify a header type
@@ -67,21 +32,13 @@ app.get ('/all-blogs', (req, res) => {
 
 
 app.get('/', (req, res) => {
-    const blogs = [
-        {title: 'Enzu finds eggs', snippet: 'The Lord is my sherpherd'},
-        {title: 'Enzu finds stars', snippet: 'The Lord is my sherpherd'},
-        {title: 'Enzu gets a tech job', snippet: 'The Lord is my sherpherd'}
-    ];
-
-    res.render('index', {
-        title: 'Home', 
-                blogs
+    res.redirect('/blogs');
     })
     
     
     //res.sendFile('./views/index.html', {root: __dirname});
     //res.send('<p>Homepage</p>');
-});
+// });
 
 app.get('/about', (req, res) => {
     res.render('about', {
@@ -95,7 +52,18 @@ app.get('/about', (req, res) => {
 // });
 
 
-//redirects
+// blog routes
+
+app.get('/blogs', (req, res) => {
+    Blog.find().sort({createdAt: -1 })
+     .then((result) => {
+        res.render('index', {title: 'All Blogs', blogs: result }) 
+     })
+     .catch((err) => {
+        console.log(err);
+     })
+})
+
 app.get('/blogs/create', (req, res) => {
     res.render('create', {
         title: 'create a blog'
