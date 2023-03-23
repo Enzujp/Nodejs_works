@@ -1,9 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const mongoose = require('mongoose');
+
 // set up express app
 const app = express();
+//connect to mongodb
+const dbURI = 'mongodb+srv://zuzu:jessedavid@nodepractice.cdo4oap.mongodb.net/Nodepractice?retryWrites=true&w=majority';
 
+mongoose.connect(dbURI)
+    .then((result) => app.listen(3000))// app.listen is moved on to ensure we listen for requests only after connection is made 
+    // remember to whitelist ip addresses on mongodb to allow access
+    .catch((err) => console.log(err));
 // register view engine 
 
 app.set('view engine', 'ejs'); // express and ejs automatically look in the views folder for the ejs files
