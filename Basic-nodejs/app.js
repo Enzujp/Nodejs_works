@@ -16,9 +16,6 @@ mongoose.connect(dbURI)
 
 app.set('view engine', 'ejs'); // express and ejs automatically look in the views folder for the ejs files
 //app.set('views', 'personalized-views'); if you're not using default views folder for ejs
-// listen for requests
-
-app.listen(3000);
 
 // middleware and static files
 
