@@ -21,5 +21,6 @@ const blogSchema = new Schema({
     }
 }, { timestamps: true }) 
 
-
+// model name should be the singular of the collection's name
 const Blog = mongoose.model('Blog', blogSchema); // create schema to define object and then build model based on schema
+module.exports = Blog;

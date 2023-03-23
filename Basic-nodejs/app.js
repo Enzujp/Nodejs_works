@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const Blog = require('./models/blog');
 
 const mongoose = require('mongoose');
 
@@ -21,6 +22,43 @@ app.set('view engine', 'ejs'); // express and ejs automatically look in the view
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
+
+// mongo and mongoose sandbox routes 
+app.get('/add-blog', (req, res) => {
+    const blog = new Blog({
+        title: 'new blog 2',
+        snippet: 'Give us this day',
+        body: 'Our daily bread'
+    });
+
+    blog.save()
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+})
+
+app.get ('/all-blogs', (req, res) => {
+    Blog.find() // method gets all blogs
+     .then((results) => {
+        res.send(results);
+     })
+     .catch((err) => {
+        console.log(err);
+     });
+});
+
+// app.get('/single-blog', (req, res) => {
+//     Blog.findById('')
+//      .then((results) => {
+//         res.send(results);
+//      })
+//      .catch((err) => {
+//         console.log(err);
+//      });
+// })
 
 // req contains information about url, and method -- get or post 
 // express automatically infers content type so there's no need to specify a header type
